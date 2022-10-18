@@ -5,11 +5,11 @@ USER devsecops
 
 WORKDIR /home/devsecops
 
-COPY ./ ./
+COPY . .
 
-ENV VIRTUAL_ENV=./venv
+ENV VIRTUAL_ENV=venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 ENV FLASK_APP=run.py
 
-CMD flask run --host=0.0.0.0 --port=5000
+CMD python3 -m flask run --host=0.0.0.0 --port=5000
 
