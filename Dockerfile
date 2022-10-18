@@ -1,5 +1,5 @@
 ARG BASE_IMAGE=ghcr.io/codepraxis-io/ubuntu22.04:python3.10-run
-FROM $BASE_IMAGE
+FROM ${BASE_IMAGE}
 
 USER devsecops
 
