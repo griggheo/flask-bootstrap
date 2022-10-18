@@ -1,6 +1,9 @@
 ARG BASE_IMAGE=gcr.io/distroless/python3-debian11
 FROM ${BASE_IMAGE}
 
+USER nonroot
+WORKDIR /home/nonroot
+
 COPY . .
 
 ENV PATH="venv/bin:$PATH"
