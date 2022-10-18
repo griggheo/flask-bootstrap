@@ -9,6 +9,7 @@ COPY ./ ./
 
 ENV VIRTUAL_ENV=./venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+ENV FLASK_APP=run.py
 
-CMD python3 main.py
+CMD flask run --host=0.0.0.0 --port=5000
 
