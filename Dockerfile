@@ -10,6 +10,6 @@ COPY . .
 ENV PATH="venv/bin:$PATH"
 ENV FLASK_APP=run.py
 
-ENTRYPOINT python3
-CMD -m flask run --host=0.0.0.0 --port=5000
+ENTRYPOINT ["python3"]
+CMD ["-m", "flask", "run", "--host=0.0.0.0", "--port=5000"]
 
