@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=gcr.io/distroless/python3-debian11
+ARG BASE_IMAGE=gcr.io/distroless/python3-debian11:debug
 FROM ${BASE_IMAGE}
 
 USER nonroot
