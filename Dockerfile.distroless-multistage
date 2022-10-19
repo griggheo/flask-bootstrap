@@ -1,6 +1,6 @@
 FROM ghcr.io/codepraxis-io/ubuntu22.04:python3.10-build as build
 
-COPY requirements /requirements.txt
+COPY requirements.txt /requirements.txt
 
 RUN python3 -m venv /venv
 ENV PATH="/venv/bin:$PATH"
