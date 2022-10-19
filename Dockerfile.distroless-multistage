@@ -10,7 +10,8 @@ ENV PATH="venv/bin:$PATH"
 # this will use the pip in the virtualenv
 RUN pip3 install --disable-pip-version-check -r requirements.txt
 
-FROM gcr.io/distroless/python3-debian11:debug
+#FROM gcr.io/distroless/python3-debian11:debug
+FROM gcr.io/distroless/python3-debian11
 
 WORKDIR /app
 
