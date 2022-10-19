@@ -1,7 +1,6 @@
 FROM ghcr.io/codepraxis-io/ubuntu22.04:python3.10-build as build
 
-USER nonroot
-WORKDIR /home/nonroot
+WORKDIR /tmp
 
 COPY . .
 
@@ -11,13 +10,9 @@ ENV PATH="venv/bin:$PATH"
 # this will use the pip in the venv
 RUN pip3 install -r requirements.txt
 
-ARG BASE_IMAGE=gcr.io/distroless/python3-debian11
-FROM ${BASE_IMAGE}
+FROM ghcr.io/codepraxis-io/distroless/python3-debian11
 
-USER nonroot
-WORKDIR /home/nonroot
-
-COPY --from=build venv venv
+COPY --from=build /tmp/venv venv
 
 ENV PATH="venv/bin:$PATH"
 ENV FLASK_APP=run.py
