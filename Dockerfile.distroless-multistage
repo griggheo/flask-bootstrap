@@ -1,22 +1,21 @@
 FROM ghcr.io/codepraxis-io/ubuntu22.04:python3.10-build as build
 
-USER root
-COPY requirements.txt /requirements.txt
+COPY requirements.txt requirements.txt
 
-RUN python3 -m venv /venv
-ENV PATH="/venv/bin:$PATH"
+RUN python3 -m venv venv
+ENV PATH="venv/bin:$PATH"
 
 # this will use the pip in the virtualenv
-RUN pip3 install --disable-pip-version-check -r /requirements.txt
+RUN pip3 install --disable-pip-version-check -r requirements.txt
 
 FROM gcr.io/distroless/python3-debian11:debug
 
-COPY --from=build /venv /venv
-COPY . /app
-WORKDIR /app
+COPY . .
+COPY --from=build venv venv
 
-ENV PATH="/venv/bin:$PATH"
+ENV PATH="venv/bin:$PATH"
 ENV FLASK_APP=run.py
+ENV PYTHONPATH=venv/lib/python3.10/site-packages
 
 ENTRYPOINT ["python3"]
 CMD ["-m", "flask", "run", "--host=0.0.0.0", "--port=5000"]
