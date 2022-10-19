@@ -1,0 +1,25 @@
+FROM ghcr.io/codepraxis-io/ubuntu22.04:python3.10-build as build
+
+USER nonroot
+WORKDIR /home/nonroot
+
+COPY . .
+
+RUN python3 -m venv venv
+ENV PATH="venv/bin:$PATH"
+
+# this will use the pip in the venv
+RUN pip3 install -r requirements.txt
+
+ARG BASE_IMAGE=gcr.io/distroless/python3-debian11
+FROM ${BASE_IMAGE}
+
+USER nonroot
+WORKDIR /home/nonroot
+
+COPY --from=build venv venv
+
+ENV PATH="venv/bin:$PATH"
+ENV FLASK_APP=run.py
+
+CMD python3 -m flask run --host=0.0.0.0 --port=5000
