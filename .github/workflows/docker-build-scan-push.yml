@@ -16,7 +16,8 @@ jobs:
     with:
       dockerfile_name: 'Dockerfile.distroless-multistage'
       docker_image_name: 'flask-bootstrap'
-      docker_image_tag_suffix: 'distroless-multistage' 
+      docker_image_tag_suffix: 'distroless-multistage'
+      verify_base_image_signature: 'false'
     #secrets: inherit
     secrets: 
       destination_registry_username: ${{secrets.GHCR_USERNAME}}
