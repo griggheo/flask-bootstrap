@@ -12,7 +12,7 @@ on:
 
 jobs:
   docker-build-scan-push:
-    uses: codepraxis-io/github-actions/.github/workflows/docker-build-scan-push-workflow.yml
+    uses: codepraxis-io/github-actions/.github/workflows/docker-build-scan-push-workflow.yml@main
     with:
       dockerfile_name: 'Dockerfile.distroless-multistage'
       docker_image_name: 'flask-bootstrap'
