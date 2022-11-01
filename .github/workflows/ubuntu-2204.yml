@@ -11,23 +11,23 @@ on:
   workflow_call:
 
 jobs:
-  app-build:
-    uses: codepraxis-io/github-actions/.github/workflows/app-build-workflow.yml@main
-    with:
-      build_dir: 'venv'
-      cosign_blob_name: ${{ github.repository }}
-      docker_build_image: 'ghcr.io/codepraxis-io/ubuntu22.04:python3.10-build'
-    #secrets: inherit
-    secrets: 
-      destination_registry_username: ${{secrets.GHCR_USERNAME}}
-      destination_registry_password: ${{secrets.GHCR_TOKEN}}
-      cosign_private_key: ${{secrets.COSIGN_PRIVATE_KEY}}
-      cosign_private_key_password: ${{secrets.COSIGN_PRIVATE_KEY_PASSWORD}}
-      cosign_public_key: ${{secrets.COSIGN_PUBLIC_KEY}}
+  # app-build:
+  #   uses: codepraxis-io/github-actions/.github/workflows/app-build-workflow.yml@main
+  #   with:
+  #     build_dir: 'venv'
+  #     cosign_blob_name: ${{ github.repository }}
+  #     docker_build_image: 'ghcr.io/codepraxis-io/ubuntu22.04:python3.10-build'
+  #   #secrets: inherit
+  #   secrets: 
+  #     destination_registry_username: ${{secrets.GHCR_USERNAME}}
+  #     destination_registry_password: ${{secrets.GHCR_TOKEN}}
+  #     cosign_private_key: ${{secrets.COSIGN_PRIVATE_KEY}}
+  #     cosign_private_key_password: ${{secrets.COSIGN_PRIVATE_KEY_PASSWORD}}
+  #     cosign_public_key: ${{secrets.COSIGN_PUBLIC_KEY}}
 
   app-docker-build-scan-push:
     uses: codepraxis-io/github-actions/.github/workflows/app-docker-workflow.yml@main
-    needs: ['app-build']
+    #needs: ['app-build']
     with:
       build_dir: 'venv'
       cosign_blob_name: ${{ github.repository }}
