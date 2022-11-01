@@ -1,9 +1,9 @@
 name: distroless-multistage
 
 on:
-  push:
-    tags:        
-      - v*.*.*
+#  push:
+#    tags:        
+#      - v*.*.*
     #branches:
     #  - master
     # paths:
