@@ -14,5 +14,7 @@ pip3 install -r requirements.txt
 pip3 install cyclonedx-bom
 cyclonedx-py -e --format json -o cyclonedx-sbom.json
 
+mv cyclonedx-sbom.json venv
+
 # remove pip because it has a disputed "will not fix" CVE: CVE-2018-20225
 #rm -rf $VIRTUAL_ENV/lib/python3.10/site-packages/pip*
