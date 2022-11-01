@@ -25,18 +25,18 @@ jobs:
       cosign_private_key_password: ${{secrets.COSIGN_PRIVATE_KEY_PASSWORD}}
       cosign_public_key: ${{secrets.COSIGN_PUBLIC_KEY}}
 
-  # app-docker-build-scan-push:
-  #   uses: codepraxis-io/github-actions/.github/workflows/app-docker-workflow.yml@main
-  #   needs: ['build-app']
-  #   with:
-  #     build_dir: 'venv'
-  #     dockerfile_name: 'Dockerfile'
-  #     docker_image_name: ${{ github.repository }}
-  #     docker_image_tag_suffix: 'ubuntu22.04-python3.10'
-  #   #secrets: inherit
-  #   secrets: 
-  #     destination_registry_username: ${{secrets.GHCR_USERNAME}}
-  #     destination_registry_password: ${{secrets.GHCR_TOKEN}}
-  #     cosign_private_key: ${{secrets.COSIGN_PRIVATE_KEY}}
-  #     cosign_private_key_password: ${{secrets.COSIGN_PRIVATE_KEY_PASSWORD}}
-  #     cosign_public_key: ${{secrets.COSIGN_PUBLIC_KEY}}
+  app-docker-build-scan-push:
+    uses: codepraxis-io/github-actions/.github/workflows/app-docker-workflow.yml@main
+    needs: ['build-app']
+    with:
+      build_dir: 'venv'
+      cosign_blob_name: ${{ github.repository }}
+      docker_image_name: ${{ github.repository }}
+      docker_image_tag_suffix: 'ubuntu22.04-python3.10'
+    #secrets: inherit
+    secrets: 
+      destination_registry_username: ${{secrets.GHCR_USERNAME}}
+      destination_registry_password: ${{secrets.GHCR_TOKEN}}
+      cosign_private_key: ${{secrets.COSIGN_PRIVATE_KEY}}
+      cosign_private_key_password: ${{secrets.COSIGN_PRIVATE_KEY_PASSWORD}}
+      cosign_public_key: ${{secrets.COSIGN_PUBLIC_KEY}}

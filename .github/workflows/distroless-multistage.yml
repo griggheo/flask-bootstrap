@@ -1,4 +1,4 @@
-name: devsecops
+name: distroless-multistage
 
 on:
   push:
