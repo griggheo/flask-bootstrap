@@ -12,7 +12,7 @@ on:
 
 jobs:
   build-app:
-    uses: codepraxis-io/github-actions/.github/workflows/build-app-workflow.yml@main
+    uses: codepraxis-io/github-actions/.github/workflows/app-build-workflow.yml@main
     with:
       build_dir: 'venv'
       docker_build_image: 'ghcr.io/codepraxis-io/ubuntu22.04:python3.10-build'
@@ -26,7 +26,7 @@ jobs:
       cosign_public_key: ${{secrets.COSIGN_PUBLIC_KEY}}
 
   # docker-build-scan-push:
-  #   uses: codepraxis-io/github-actions/.github/workflows/docker-build-scan-push-workflow.yml@main
+  #   uses: codepraxis-io/github-actions/.github/workflows/app-docker-workflow.yml@main
   #   with:
   #     dockerfile_name: 'Dockerfile.distroless-multistage'
   #     docker_image_name: 'flask-bootstrap'
