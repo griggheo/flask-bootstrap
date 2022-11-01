@@ -15,7 +15,7 @@ jobs:
     uses: codepraxis-io/github-actions/.github/workflows/app-docker-workflow.yml@main
     with:
       dockerfile_name: 'Dockerfile.distroless-multistage'
-      docker_image_name: 'flask-bootstrap'
+      docker_image_name: ${{ github.repository }}
       docker_image_tag_suffix: 'distroless-multistage'
       download_build_artifacts: 'false'
       verify_base_image_signature: 'false'
