@@ -1,4 +1,4 @@
-name: ubuntu-22.04
+name: app-docker-pipelines
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
       cosign_private_key_password: ${{secrets.COSIGN_PRIVATE_KEY_PASSWORD}}
       cosign_public_key: ${{secrets.COSIGN_PUBLIC_KEY}}
 
-  app-docker-build-scan-push:
+  app-docker-ubuntu-2204:
     uses: codepraxis-io/github-actions/.github/workflows/app-docker-workflow.yml@main
     needs: ['app-build']
     with:
@@ -40,3 +40,23 @@ jobs:
       cosign_private_key: ${{secrets.COSIGN_PRIVATE_KEY}}
       cosign_private_key_password: ${{secrets.COSIGN_PRIVATE_KEY_PASSWORD}}
       cosign_public_key: ${{secrets.COSIGN_PUBLIC_KEY}}
+
+  app-docker-distroless-debian11:
+    uses: codepraxis-io/github-actions/.github/workflows/app-docker-workflow.yml@main
+    needs: ['app-build']
+    with:
+      build_dir: 'venv'
+      cosign_blob_name: ${{ github.repository }}
+      docker_image_name: ${{ github.repository }}
+      docker_image_tag_suffix: 'distroless-debian11'
+      dockerfile_name: 'Dockerfile.distroless'
+      dockerfile_scanner: 'semgrep'
+      verify_base_image_signature: 'false'
+    #secrets: inherit
+    secrets: 
+      destination_registry_username: ${{secrets.GHCR_USERNAME}}
+      destination_registry_password: ${{secrets.GHCR_TOKEN}}
+      cosign_private_key: ${{secrets.COSIGN_PRIVATE_KEY}}
+      cosign_private_key_password: ${{secrets.COSIGN_PRIVATE_KEY_PASSWORD}}
+      cosign_public_key: ${{secrets.COSIGN_PUBLIC_KEY}}
+

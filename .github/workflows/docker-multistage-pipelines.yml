@@ -1,4 +1,4 @@
-name: distroless-multistage
+name: docker-multistage-pipelines
 
 on:
   push:
