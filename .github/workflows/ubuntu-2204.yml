@@ -27,7 +27,7 @@ jobs:
 
   app-docker-build-scan-push:
     uses: codepraxis-io/github-actions/.github/workflows/app-docker-workflow.yml@main
-    needs: ['build-app']
+    needs: ['app-build']
     with:
       build_dir: 'venv'
       cosign_blob_name: ${{ github.repository }}
