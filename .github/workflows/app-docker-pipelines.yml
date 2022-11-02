@@ -82,7 +82,6 @@ jobs:
       cosign_blob_name: ${{ github.repository }}
       docker_image_name: ${{ github.repository }}
       docker_image_tag_suffix: 'alpine3.16-python3.10'
-      #docker_cicd_image: 'ghcr.io/codepraxis-io/alpine3.16:cicd'
       docker_run_image: 'ghcr.io/codepraxis-io/alpine3.16:python3.10-run'
       docker_image_scanner: 'grype'
     #secrets: inherit
