@@ -11,7 +11,7 @@ on:
   workflow_call:
 
 jobs:
-  docker-build-scan-push:
+  distroless-debian11:
     uses: codepraxis-io/github-actions/.github/workflows/app-docker-workflow.yml@main
     with:
       dockerfile_name: 'Dockerfile.distroless-multistage'
@@ -27,3 +27,18 @@ jobs:
       cosign_private_key_password: ${{secrets.COSIGN_PRIVATE_KEY_PASSWORD}}
       cosign_public_key: ${{secrets.COSIGN_PUBLIC_KEY}}
 
+  alpine-316:
+    uses: codepraxis-io/github-actions/.github/workflows/app-docker-workflow.yml@main
+    with:
+      dockerfile_name: 'Dockerfile.alpine-multistage'
+      docker_image_name: ${{ github.repository }}
+      docker_image_tag_suffix: 'alpine-multistage'
+      download_build_artifacts: 'false'
+      verify_base_image_signature: 'false'
+    #secrets: inherit
+    secrets: 
+      destination_registry_username: ${{secrets.GHCR_USERNAME}}
+      destination_registry_password: ${{secrets.GHCR_TOKEN}}
+      cosign_private_key: ${{secrets.COSIGN_PRIVATE_KEY}}
+      cosign_private_key_password: ${{secrets.COSIGN_PRIVATE_KEY_PASSWORD}}
+      cosign_public_key: ${{secrets.COSIGN_PUBLIC_KEY}}

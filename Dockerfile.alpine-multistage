@@ -1,0 +1,23 @@
+FROM ghcr.io/codepraxis-io/alpine3.16:python3.10-build as build
+
+WORKDIR /home/devsecops
+
+COPY requirements.txt requirements.txt
+
+RUN python3 -m venv venv
+ENV PATH="venv/bin:$PATH"
+
+# this will use the pip in the virtualenv
+RUN pip3 install --disable-pip-version-check -r requirements.txt
+
+FROM ghcr.io/codepraxis-io/alpine3.16:python3.10-run
+
+COPY . .
+COPY --from=build /home/devsecops/venv venv
+
+ENV PATH="venv/bin:$PATH"
+ENV FLASK_APP=run.py
+
+ENTRYPOINT ["python3"]
+CMD ["-m", "flask", "run", "--host=0.0.0.0", "--port=5000"]
+
