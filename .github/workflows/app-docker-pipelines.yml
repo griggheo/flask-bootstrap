@@ -25,6 +25,20 @@ jobs:
       cosign_private_key_password: ${{secrets.COSIGN_PRIVATE_KEY_PASSWORD}}
       cosign_public_key: ${{secrets.COSIGN_PUBLIC_KEY}}
 
+  app-build-debian:
+    uses: codepraxis-io/github-actions/.github/workflows/app-build-workflow.yml@main
+    with:
+      build_dir: 'venv'
+      cosign_blob_name: ${{ github.repository }}
+      docker_build_image: 'ghcr.io/codepraxis-io/debian11:python3-build' # fix: ModuleNotFoundError: No module named 'importlib_metadata'
+    #secrets: inherit
+    secrets: 
+      destination_registry_username: ${{secrets.GHCR_USERNAME}}
+      destination_registry_password: ${{secrets.GHCR_TOKEN}}
+      cosign_private_key: ${{secrets.COSIGN_PRIVATE_KEY}}
+      cosign_private_key_password: ${{secrets.COSIGN_PRIVATE_KEY_PASSWORD}}
+      cosign_public_key: ${{secrets.COSIGN_PUBLIC_KEY}}
+
   # app-build-alpine:
   #   uses: codepraxis-io/github-actions/.github/workflows/app-build-workflow.yml@main
   #   with:
@@ -57,7 +71,7 @@ jobs:
 
   app-docker-distroless-debian11:
     uses: codepraxis-io/github-actions/.github/workflows/app-docker-workflow.yml@main
-    needs: ['app-build-ubuntu']
+    needs: ['app-build-debian']
     with:
       build_dir: 'venv'
       cosign_blob_name: ${{ github.repository }}

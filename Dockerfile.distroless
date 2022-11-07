@@ -1,5 +1,5 @@
-#ARG BASE_IMAGE=gcr.io/distroless/python3-debian11:debug
-ARG BASE_IMAGE=gcr.io/distroless/python3-debian11
+ARG BASE_IMAGE=gcr.io/distroless/python3-debian11:debug
+#ARG BASE_IMAGE=gcr.io/distroless/python3-debian11
 FROM ${BASE_IMAGE}
 
 WORKDIR /app
