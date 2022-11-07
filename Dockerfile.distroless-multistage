@@ -1,4 +1,4 @@
-FROM ghcr.io/codepraxis-io/ubuntu22.04:python3.10-build as build
+FROM ghcr.io/codepraxis-io/debian11:python3-build as build
 
 WORKDIR /home/devsecops
 
