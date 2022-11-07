@@ -80,7 +80,7 @@ jobs:
       docker_image_tag_suffix: 'distroless-debian11'
       dockerfile_name: 'Dockerfile.distroless'
       dockerfile_scanner: 'semgrep'
-      stop_on_critical_vulns: 'true'
+      #stop_on_critical_vulns: 'true'
       verify_base_image_signature: 'false'
     #secrets: inherit
     secrets: 
