@@ -61,6 +61,7 @@ jobs:
       cosign_blob_name: ${{ github.repository }}
       docker_image_name: ${{ github.repository }}
       docker_image_tag_suffix: 'ubuntu22.04-python3.10'
+      stop_on_critical_vulns: 'true'
     #secrets: inherit
     secrets: 
       destination_registry_username: ${{secrets.GHCR_USERNAME}}
