@@ -31,6 +31,7 @@ jobs:
       build_dir: 'venv'
       cosign_blob_name: ${{ github.repository }}
       docker_build_image: 'ghcr.io/codepraxis-io/debian11:python3-build' # fix: ModuleNotFoundError: No module named 'importlib_metadata'
+      stop_on_critical_vulns: 'true'
     #secrets: inherit
     secrets: 
       destination_registry_username: ${{secrets.GHCR_USERNAME}}
