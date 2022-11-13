@@ -11,7 +11,7 @@ ENV PATH="venv/bin:$PATH"
 RUN pip3 install --disable-pip-version-check -r requirements.txt
 
 #FROM gcr.io/distroless/python3-debian11:debug
-FROM gcr.io/distroless/python3-debian11
+FROM gcr.io/distroless/python3-debian11:nonroot
 
 WORKDIR /app
 
