@@ -15,7 +15,7 @@ jobs:
     uses: codepraxis-io/github-actions/.github/workflows/app-build-workflow.yml@main
     with:
       build_dir: 'venv'
-      cosign_blob_name: ${{ github.repository }}
+      cosign_blob_name: ${{ github.repository }}-ubuntu22.04-python3.10
       docker_build_image: 'ghcr.io/codepraxis-io/ubuntu22.04:python3.10-build'
     #secrets: inherit
     secrets: 
@@ -29,7 +29,7 @@ jobs:
     uses: codepraxis-io/github-actions/.github/workflows/app-build-workflow.yml@main
     with:
       build_dir: 'venv'
-      cosign_blob_name: ${{ github.repository }}
+      cosign_blob_name: ${{ github.repository }}-debian11-python3.9
       docker_build_image: 'ghcr.io/codepraxis-io/debian11:python3-build' # fix: ModuleNotFoundError: No module named 'importlib_metadata'
     #secrets: inherit
     secrets: 
